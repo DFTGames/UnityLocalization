@@ -1,0 +1,4 @@
+﻿title=私の偉大なゲーム
+play=开始
+opts=設定
+info=情報
