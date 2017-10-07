@@ -1,4 +1,4 @@
-title=Il mio grande gioco
+title=Il mio grande\ngioco
 play=Gioca
 opts=Impostazioni
 info=Informazioni
