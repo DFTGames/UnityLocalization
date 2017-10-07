@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DFTGames.Localization;
 
 public class MenuManager : MonoBehaviour
 {

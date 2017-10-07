@@ -10,70 +10,74 @@ using UnityEngine.UI;
 ///
 /// ... and so on, where the folder name is the string version of the SystemLanguage enumeration.
 /// </summary>
-[RequireComponent(typeof(Image))]
-public class LocalizeImage : MonoBehaviour
+
+namespace DFTGames.Localization
 {
-    #region Public Fields
-
-    public string localizationKey;
-
-    #endregion Public Fields
-
-    #region Private Fields
-
-    private const string STR_LOCALIZATION_PREFIX = "localization/UI/";
-
-    private Image image;
-
-    #endregion Private Fields
-
-    #region Public Methods
-
-    /// <summary>
-    /// This is to set the Sprite according to the selected language by code. It update all the Image
-    /// components in the scene. This MUST be called AFTER the language has been set in Localize class.
-    /// </summary>
-    public static void SetCurrentLanguage()
+    [RequireComponent(typeof(Image))]
+    public class LocalizeImage : MonoBehaviour
     {
-        LocalizeImage[] allTexts = GameObject.FindObjectsOfType<LocalizeImage>();
-        for (int i = 0; i < allTexts.Length; i++)
-            allTexts[i].UpdateLocale();
-    }
+        #region Public Fields
 
-    /// <summary>
-    /// Update the Sprite of the Image we are attached to. It has a 100ms delay to allow Start operations.
-    /// </summary>
-    public void UpdateLocale()
-    {
-        if (!image) return; // catching race condition
-        Invoke("_updateLocale", 0.1f);
-    }
+        public string localizationKey;
 
-    #endregion Public Methods
+        #endregion Public Fields
 
-    #region Private Methods
+        #region Private Fields
 
-    /// <summary>
-    /// Update the Sprite of the Image we are attached to. If language has not been set yet try again
-    /// in 100ms.
-    /// </summary>
-    private void _updateLocale()
-    {
-        if (Localize.CurrentLanguageHasBeenSet)
+        private const string STR_LOCALIZATION_PREFIX = "localization/UI/";
+
+        private Image image;
+
+        #endregion Private Fields
+
+        #region Public Methods
+
+        /// <summary>
+        /// This is to set the Sprite according to the selected language by code. It update all the Image
+        /// components in the scene. This MUST be called AFTER the language has been set in Localize class.
+        /// </summary>
+        public static void SetCurrentLanguage()
         {
-            Sprite tmp = Resources.Load(STR_LOCALIZATION_PREFIX + Localize.PlayerLanguage.ToString() + "/" + localizationKey, typeof(Sprite)) as Sprite;
-            if (tmp != null)
-                image.sprite = tmp;
-            return;
+            LocalizeImage[] allTexts = GameObject.FindObjectsOfType<LocalizeImage>();
+            for (int i = 0; i < allTexts.Length; i++)
+                allTexts[i].UpdateLocale();
         }
-        UpdateLocale();
-    }
 
-    private void Start()
-    {
-        image = GetComponent<Image>();
-        UpdateLocale();
-    }
+        /// <summary>
+        /// Update the Sprite of the Image we are attached to. It has a 100ms delay to allow Start operations.
+        /// </summary>
+        public void UpdateLocale()
+        {
+            if (!image) return; // catching race condition
+            Invoke("_updateLocale", 0.1f);
+        }
 
-    #endregion Private Methods
+        #endregion Public Methods
+
+        #region Private Methods
+
+        /// <summary>
+        /// Update the Sprite of the Image we are attached to. If language has not been set yet try again
+        /// in 100ms.
+        /// </summary>
+        private void _updateLocale()
+        {
+            if (Locale.CurrentLanguageHasBeenSet)
+            {
+                Sprite tmp = Resources.Load(STR_LOCALIZATION_PREFIX + Locale.PlayerLanguage.ToString() + "/" + localizationKey, typeof(Sprite)) as Sprite;
+                if (tmp != null)
+                    image.sprite = tmp;
+                return;
+            }
+            UpdateLocale();
+        }
+
+        private void Start()
+        {
+            image = GetComponent<Image>();
+            UpdateLocale();
+        }
+
+        #endregion Private Methods
+    }
 }
