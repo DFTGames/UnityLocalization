@@ -1,4 +1,0 @@
-title	My Great Game
-play	Play
-opts	Settings
-info	Info
