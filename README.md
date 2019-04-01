@@ -42,7 +42,7 @@ Tab character (0x09). To add a newline simply use the sequence **\\n**
 Be sure to use the same sprite name for all its version and store each sprite in
 its language specific folder.
 
-The **language name **must be one of those listed here:
+The **language name** must be one of those listed here:
 https://docs.unity3d.com/ScriptReference/SystemLanguage.html
 
 Once you have prepared the files all you have to do is to add the correct script
