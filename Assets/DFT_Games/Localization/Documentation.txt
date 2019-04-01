@@ -1,6 +1,6 @@
 DFT Games Localization Solution
 -------------------------------
-This package delivers 2 independant features:
+This package delivers 2 independent features:
 	*) Text localization (both UGUI and Text Mesh Pro)
 	*) UI Images localization (2D Sprites)
 
