@@ -27,7 +27,7 @@ Add the script to the UI elements you want to localize
 
 The necessary files must be located in the following folders:
 
-**Resources\\localization **
+**Resources\\localization**
 
 Here you add the language files. Each file must be named following the scheme
 \<languageName\>.txt, so for English you'll create a file named English.txt, for
@@ -42,7 +42,7 @@ Tab character (0x09). To add a newline simply use the sequence **\\n**
 Be sure to use the same sprite name for all its version and store each sprite in
 its language specific folder.
 
-The **language name **must be one of those listed here:
+The **language name** must be one of those listed here:
 https://docs.unity3d.com/ScriptReference/SystemLanguage.html
 
 Once you have prepared the files all you have to do is to add the correct script
