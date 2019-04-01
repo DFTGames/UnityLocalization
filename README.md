@@ -27,7 +27,7 @@ Add the script to the UI elements you want to localize
 
 The necessary files must be located in the following folders:
 
-**Resources\\localization **
+**Resources\\localization**
 
 Here you add the language files. Each file must be named following the scheme
 \<languageName\>.txt, so for English you'll create a file named English.txt, for
