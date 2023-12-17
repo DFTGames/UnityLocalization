@@ -1,50 +1,46 @@
-Unity Localization
-==================
+**DFT Games Localization Solution**
 
-This project is meant to provide a no-nonsense,
-[KISS](https://en.wikipedia.org/wiki/KISS_principle) compliant implementation of
-a Localization System for Unity. The main requirements we try to satisfy here
-are:
+[TOC]
 
--   Use simple text files, easy to send to translators, no Unity required for
-    them
+# Introduction
 
--   Allow full UI localization (including sprites)
+This package delivers 2 independent features:
 
-The code is published “as is”, exactly the way we use it. Feel free to use it
-the way you see fit.
+- Text localization (both UGUI and Text Mesh Pro)
+- UI Image localization (2D Sprites)
 
-DFT Games Localization Solution
-===============================
+Two are the steps to implement localization:
+ 	1) Prepare the localized files
+ 	2) Add the script to the UI elements you want to localize 
 
-This package delivers 2 independent features: *) Text localization (both UGUI
-and Text Mesh Pro)* ) UI Images localization (2D Sprites)
-
-Two are the steps to implement localization: 1) Prepare the localized files 2)
-Add the script to the UI elements you want to localize
-
-### Localized Files
+# Localized Files Location
 
 The necessary files must be located in the following folders:
 
-**Resources\\localization**
+**Resources\localization**
 
-Here you add the language files. Each file must be named following the scheme
-\<languageName\>.txt, so for English you'll create a file named English.txt, for
-Italian the file will be Italian.txt and so on.
+Here you add the language files. Each file must be named following the scheme **LanguageName.txt**, so for English, you'll create a file named **English.txt**; for Italian, the file will be **Italian.txt** and so on.
 
-The file content is:
+The file content is structured this way: **one key/value per line**. 
 
-one key/value per line. valid key/value separator are the equal sign (=) and the
-Tab character (0x09). To add a newline simply use the sequence **\\n**
+Valid key/value separators are:
 
-**Resources\\localization\\UI\\\<LanguageName\>**  
-Be sure to use the same sprite name for all its version and store each sprite in
-its language specific folder.
+- the equal sign
+- the Tab character
 
-The **language name** must be one of those listed here:
-https://docs.unity3d.com/ScriptReference/SystemLanguage.html
+To add a new line simply use the sequence **\n** in the text
 
-Once you have prepared the files all you have to do is to add the correct script
-component to the UI element you want to localize. LocalizeImage for the UI
-Images Localize for the UGUI Text LocalizeTM for Text Mesh Pro UGUI
+Example: 
+
+	Resources\localization\UI\<LanguageName>
+	
+	Be sure to use the same sprite name for all its version and store each sprite in its language specific folder.
+
+The language name **must be** one of those listed here: https://docs.unity3d.com/ScriptReference/SystemLanguage.html
+
+# Scripts to use
+
+Once you have prepared the files all you have to do is to add the correct script component to the UI element you want to localize.
+	**LocalizeImage** for the UI Images
+	**Localize** for the UGUI Text
+	**LocalizeTM** for Text Mesh Pro UGUI
