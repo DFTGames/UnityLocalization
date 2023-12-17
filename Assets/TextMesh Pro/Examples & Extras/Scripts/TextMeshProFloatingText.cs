@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace TMPro.Examples
 {
-    
+
     public class TextMeshProFloatingText : MonoBehaviour
     {
         public Font TheFont;
@@ -21,8 +21,18 @@ namespace TMPro.Examples
         Quaternion lastRotation = Quaternion.identity;
 
         public int SpawnType;
+        public bool IsTextObjectScaleStatic;
 
         //private int m_frame = 0;
+
+        static WaitForEndOfFrame k_WaitForEndOfFrame = new WaitForEndOfFrame();
+        static WaitForSeconds[] k_WaitForSecondsRandom = new WaitForSeconds[]
+        {
+            new WaitForSeconds(0.05f), new WaitForSeconds(0.1f), new WaitForSeconds(0.15f), new WaitForSeconds(0.2f), new WaitForSeconds(0.25f),
+            new WaitForSeconds(0.3f), new WaitForSeconds(0.35f), new WaitForSeconds(0.4f), new WaitForSeconds(0.45f), new WaitForSeconds(0.5f),
+            new WaitForSeconds(0.55f), new WaitForSeconds(0.6f), new WaitForSeconds(0.65f), new WaitForSeconds(0.7f), new WaitForSeconds(0.75f),
+            new WaitForSeconds(0.8f), new WaitForSeconds(0.85f), new WaitForSeconds(0.9f), new WaitForSeconds(0.95f), new WaitForSeconds(1.0f),
+        };
 
         void Awake()
         {
@@ -43,7 +53,7 @@ namespace TMPro.Examples
                 // TextMesh Pro Implementation
                 m_textMeshPro = m_floatingText.AddComponent<TextMeshPro>();
                 m_textMeshPro.rectTransform.sizeDelta = new Vector2(3, 3);
-                
+
                 m_floatingText_Transform = m_floatingText.transform;
                 m_floatingText_Transform.position = m_transform.position + new Vector3(0, 15f, 0);
 
@@ -57,6 +67,7 @@ namespace TMPro.Examples
                 //m_textMeshPro.enableShadows = false;
                 m_textMeshPro.enableKerning = false;
                 m_textMeshPro.text = string.Empty;
+                m_textMeshPro.isTextObjectScaleStatic = IsTextObjectScaleStatic;
 
                 StartCoroutine(DisplayTextMeshProFloatingText());
             }
@@ -101,7 +112,7 @@ namespace TMPro.Examples
 
         public IEnumerator DisplayTextMeshProFloatingText()
         {
-            float CountDuration = 2.0f; // How long is the countdown alive.    
+            float CountDuration = 2.0f; // How long is the countdown alive.
             float starting_Count = Random.Range(5f, 20f); // At what number is the counter starting at.
             float current_Count = starting_Count;
 
@@ -142,12 +153,12 @@ namespace TMPro.Examples
                     m_transform.forward = new Vector3(dir.x, 0, dir.z);
                 }
 
-                yield return new WaitForEndOfFrame();
+                yield return k_WaitForEndOfFrame;
             }
 
             //Debug.Log("Done Counting down.");
 
-            yield return new WaitForSeconds(Random.Range(0.1f, 1.0f));
+            yield return k_WaitForSecondsRandom[Random.Range(0, 19)];
 
             m_floatingText_Transform.position = start_pos;
 
@@ -157,7 +168,7 @@ namespace TMPro.Examples
 
         public IEnumerator DisplayTextMeshFloatingText()
         {
-            float CountDuration = 2.0f; // How long is the countdown alive.    
+            float CountDuration = 2.0f; // How long is the countdown alive.
             float starting_Count = Random.Range(5f, 20f); // At what number is the counter starting at.
             float current_Count = starting_Count;
 
@@ -197,14 +208,12 @@ namespace TMPro.Examples
                     m_transform.forward = new Vector3(dir.x, 0, dir.z);
                 }
 
-
-
-                yield return new WaitForEndOfFrame();
+                yield return k_WaitForEndOfFrame;
             }
 
             //Debug.Log("Done Counting down.");
 
-            yield return new WaitForSeconds(Random.Range(0.1f, 1.0f));
+            yield return k_WaitForSecondsRandom[Random.Range(0, 20)];
 
             m_floatingText_Transform.position = start_pos;
 
