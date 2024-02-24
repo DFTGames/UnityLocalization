@@ -82,8 +82,11 @@ namespace DFTGames.Localization
         {
             Locale.CurrentLanguage = language.ToString();
             Locale.PlayerLanguage = language;
-            Localize[] allTexts = GameObject.FindObjectsOfType<Localize>();
-            LocalizeTM[] allTextsTM = GameObject.FindObjectsOfType<LocalizeTM>();
+            Localize[] allTexts = GameObject.FindObjectsByType<Localize>(FindObjectsSortMode.None);
+            LocalizeTM[] allTextsTM = GameObject.FindObjectsByType<LocalizeTM>(FindObjectsSortMode.None);
+            LocalizeImage[] allImages = GameObject.FindObjectsByType<LocalizeImage>(FindObjectsSortMode.None);
+            for (int i = 0; i < allImages.Length; i++)
+                allImages[i].UpdateLocale();
             for (int i = 0; i < allTexts.Length; i++)
                 allTexts[i].UpdateLocale();
             for (int i = 0; i < allTextsTM.Length; i++)

@@ -10,19 +10,19 @@ namespace DFTGames
         public void SetEnglish()
         {
             Localize.SetCurrentLanguage(SystemLanguage.English);
-            LocalizeImage.SetCurrentLanguage();
+            LocalizeImage.SetCurrentLanguage(SystemLanguage.English);
         }
 
         public void SetItalian()
         {
             Localize.SetCurrentLanguage(SystemLanguage.Italian);
-            LocalizeImage.SetCurrentLanguage();
+            LocalizeImage.SetCurrentLanguage(SystemLanguage.Italian);
         }
 
         public void SetJapanese()
         {
             Localize.SetCurrentLanguage(SystemLanguage.Japanese);
-            LocalizeImage.SetCurrentLanguage();
+            LocalizeImage.SetCurrentLanguage(SystemLanguage.Japanese);
         }
 
         #endregion Public Methods
