@@ -14,6 +14,11 @@ namespace DFTGames.Localization
         public static Dictionary<string, string> CurrentLanguageStrings = new Dictionary<string, string>();
         static TextAsset currentLocalizationText;
 
+        public delegate void OnLanguageChangedDelegate();
+        public static event OnLanguageChangedDelegate OnLanguageChanged;
+
+
+
         /// <summary>
         /// This sets the current language. It expects a standard .Net CultureInfo.Name format
         /// </summary>
@@ -51,6 +56,7 @@ namespace DFTGames.Localization
                     {
                         Debug.LogErrorFormat("Locale Language '{0}' not found!", currentLanguage);
                     }
+                    OnLanguageChanged?.Invoke();
                 }
             }
         }

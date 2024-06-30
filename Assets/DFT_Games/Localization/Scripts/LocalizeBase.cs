@@ -34,7 +34,6 @@ namespace DFTGames.Localization
 
         #region Public Properties
 
-
         #endregion Public Properties
 
         #region Private Properties
@@ -59,6 +58,17 @@ namespace DFTGames.Localization
                 SetCurrentLanguage(Locale.PlayerLanguage);
             }
             UpdateLocale();
+            Locale.OnLanguageChanged += UpdateLocale;
+        }
+
+        private void OnDestroy()
+        {
+            Locale.OnLanguageChanged -= UpdateLocale;
+        }
+
+        private void OnEnable()
+        {
+            UpdateLocale();
         }
 
         /// <summary>
@@ -82,15 +92,6 @@ namespace DFTGames.Localization
         {
             Locale.CurrentLanguage = language.ToString();
             Locale.PlayerLanguage = language;
-            Localize[] allTexts = GameObject.FindObjectsByType<Localize>(FindObjectsSortMode.None);
-            LocalizeTM[] allTextsTM = GameObject.FindObjectsByType<LocalizeTM>(FindObjectsSortMode.None);
-            LocalizeImage[] allImages = GameObject.FindObjectsByType<LocalizeImage>(FindObjectsSortMode.None);
-            for (int i = 0; i < allImages.Length; i++)
-                allImages[i].UpdateLocale();
-            for (int i = 0; i < allTexts.Length; i++)
-                allTexts[i].UpdateLocale();
-            for (int i = 0; i < allTextsTM.Length; i++)
-                allTextsTM[i].UpdateLocale();
         }
 
 
