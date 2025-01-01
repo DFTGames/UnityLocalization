@@ -1,0 +1,4 @@
+title=Il mio grande\ngioco
+play=Gioca
+opts=Impostazioni
+info=Informazioni

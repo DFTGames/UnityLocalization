@@ -1,0 +1,4 @@
+title	My Great\nGame
+play	Play
+opts	Settings
+info	Info
