@@ -14,6 +14,7 @@ namespace AssetStoreTools.Uploader
     internal class AssetStoreUploader : AssetStoreToolsWindow
     {
         public const string MinRequiredPackageVersion = "2021.3";
+        public const long MaxPackageSizeBytes = 6442450944; // 6 GB
 
         private const string MainWindowVisualTree = "Packages/com.unity.asset-store-tools/Editor/Uploader/Styles/Base/BaseWindow_Main";
         private const string DebugPhrase = "debug";

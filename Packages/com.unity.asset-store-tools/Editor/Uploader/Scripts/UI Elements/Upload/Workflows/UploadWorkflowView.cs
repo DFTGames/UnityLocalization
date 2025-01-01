@@ -164,6 +164,36 @@ namespace AssetStoreTools.Uploader.UIElements
             return exportPath;
         }
 
+        protected void CheckForMissingMetas()
+        {
+            if (ASToolsPreferences.Instance.DisplayHiddenMetaDialog && FileUtility.IsMissingMetaFiles(GetAllExportPaths()))
+            {
+                var selectedOption = EditorUtility.DisplayDialogComplex(
+                    "Notice",
+                    "Your package includes hidden folders which do not contain meta files. " +
+                    "Hidden folders will not be exported unless they contain meta files.\n\nWould you like meta files to be generated?",
+                    "Yes", "No", "No and do not display this again");
+
+                switch (selectedOption)
+                {
+                    case 0:
+                        FileUtility.GenerateMetaFiles(GetAllExportPaths());
+                        EditorUtility.DisplayDialog(
+                            "Success",
+                            "Meta files have been generated. Please note that further manual tweaking may be required to set up correct references",
+                            "OK");
+                        break;
+                    case 1:
+                        // Do nothing
+                        return;
+                    case 2:
+                        ASToolsPreferences.Instance.DisplayHiddenMetaDialog = false;
+                        ASToolsPreferences.Instance.Save();
+                        return;
+                }
+            }
+        }
+
         public bool GetValidationSummary(out string validationSummary)
         {
             return ValidationElement.GetValidationSummary(out validationSummary);

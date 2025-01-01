@@ -299,7 +299,8 @@ namespace AssetStoreTools.Uploader.UIElements
             if (dependencies != null && dependencies.Count != 0)
                 FindAndPopulateDependencies(dependencies);
 
-            // After setting up the main and extra paths update validation paths
+            // After setting up the main and extra paths, check for missing metas and update validation paths
+            CheckForMissingMetas();
             UpdateValidationPaths();
 
             // Only serialize current selection when no serialized toggles were passed

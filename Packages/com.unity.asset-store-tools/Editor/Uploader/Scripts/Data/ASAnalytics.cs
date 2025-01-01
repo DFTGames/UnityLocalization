@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine.Analytics;
 
 namespace AssetStoreTools.Uploader.Data
@@ -14,12 +15,19 @@ namespace AssetStoreTools.Uploader.Data
         
         static bool EnableAnalytics()
         {
+#if UNITY_2023_2_OR_NEWER
+            return true;
+#else
             var result = EditorAnalytics.RegisterEventWithLimit(EventName, MaxEventsPerHour, MaxNumberOfElements, VendorKey, VersionId);
             return result == AnalyticsResult.Ok;
+#endif
         }
 
         [System.Serializable]
         public struct AnalyticsData
+#if UNITY_2023_2_OR_NEWER
+            : IAnalytic.IData
+#endif
         {
             public string ToolVersion;
             public string PackageId;
@@ -33,6 +41,26 @@ namespace AssetStoreTools.Uploader.Data
             public string EndpointUrl;
         }
 
+#if UNITY_2023_2_OR_NEWER
+        [AnalyticInfo(eventName: EventName, vendorKey: VendorKey, version: VersionId, maxEventsPerHour: MaxEventsPerHour, maxNumberOfElements: MaxNumberOfElements)]
+        private class AssetStoreToolsAnalytic : IAnalytic
+        {
+            private AnalyticsData _data;
+
+            public AssetStoreToolsAnalytic(AnalyticsData data)
+            {
+                _data = data;
+            }
+
+            public bool TryGatherData(out IAnalytic.IData data, out Exception error)
+            {
+                error = null;
+                data = _data;
+                return data != null;
+            }
+        }
+#endif
+
         public static void SendUploadingEvent(AnalyticsData data)
         {
             if (!EditorAnalytics.enabled)
@@ -40,7 +68,13 @@ namespace AssetStoreTools.Uploader.Data
 
             if (!EnableAnalytics())
                 return;
+
+#if UNITY_2023_2_OR_NEWER
+            var analytic = new AssetStoreToolsAnalytic(data);
+            EditorAnalytics.SendAnalytic(analytic);
+#else
             EditorAnalytics.SendEventWithLimit(EventName, data, VersionId);
+#endif
         }
     }
 }

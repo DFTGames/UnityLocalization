@@ -442,6 +442,24 @@ namespace AssetStoreTools.Uploader.UIElements
             return exportResult;
         }
 
+        private bool ValidatePackageSize(string packagePath)
+        {
+            long packageSize = new FileInfo(packagePath).Length;
+            long packageSizeLimit = AssetStoreUploader.MaxPackageSizeBytes;
+            float packageSizeInGB = packageSize / (1024f * 1024f * 1024f);
+            float maxPackageSizeInGB = packageSizeLimit / (1024f * 1024f * 1024f);
+
+            if (packageSizeInGB - maxPackageSizeInGB < 0.1f)
+                return true;
+
+            var message = $"The size of your package ({packageSizeInGB:0.#} GB) exceeds the maximum allowed package size of {maxPackageSizeInGB:0.#} GB.\n\n" +
+                $"Please reduce the size of your package.";
+
+            EditorUtility.DisplayDialog("Asset Store Tools", message, "OK");
+
+            return false;
+        }
+
         private bool ValidateUnityVersionsForUpload()
         {
             if (!AssetStoreUploader.ShowPackageVersionDialog)
@@ -487,6 +505,9 @@ namespace AssetStoreTools.Uploader.UIElements
                 Debug.LogError($"Package exporting failed: {exportResult.Error}");
                 return;
             }
+
+            if (!ValidatePackageSize(exportResult.ExportedPath))
+                return;
 
             if (!ValidateUnityVersionsForUpload())
                 return;

@@ -1,5 +1,6 @@
 ﻿using AssetStoreTools.Validator.Data;
 using AssetStoreTools.Validator.TestDefinitions;
+using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
@@ -192,6 +193,12 @@ namespace AssetStoreTools.Validator.UIElements
                 tripleClickSelectsLine = false
             };
             testCaseDescription.AddToClassList("test-description");
+
+#if UNITY_2022_1_OR_NEWER
+            testCaseDescription.focusable = true;
+            testCaseDescription.selectAllOnFocus = false;
+            testCaseDescription.selectAllOnMouseUp = false;
+#endif
 
             _expandedBox = new VisualElement();
             _expandedBox.AddToClassList("test-expanded-box");

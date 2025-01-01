@@ -159,7 +159,7 @@ namespace AssetStoreTools.Exporter
 
                 foreach (var assetPath in assetPaths)
                 {
-                    var guid = GetAssetGuid(assetPath, true);
+                    var guid = GetAssetGuid(assetPath, true, true);
                     if (string.IsNullOrEmpty(guid))
                         continue;
 
@@ -301,6 +301,11 @@ namespace AssetStoreTools.Exporter
                 CreateNoWindow = true,
                 UseShellExecute = false
             };
+
+#if UNITY_EDITOR_OSX
+            // Prevent OSX-specific archive pollution
+            info.EnvironmentVariables.Add("COPYFILE_DISABLE", "1");
+#endif
 
             using (Process process = Process.Start(info))
             {

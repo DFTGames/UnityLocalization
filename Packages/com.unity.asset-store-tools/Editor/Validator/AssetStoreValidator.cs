@@ -30,8 +30,8 @@ namespace AssetStoreTools.Validator
             root.Clear();
 
             // Getting a reference to the USS Document and adding stylesheet to the root
-            root.styleSheets.Add(StyleSelector.ValidatorWindow.BaseWindowStyle);
-            root.styleSheets.Add(StyleSelector.ValidatorWindow.BaseWindowTheme);
+            root.styleSheets.Add(StyleSelector.ValidatorWindow.ValidatorWindowStyle);
+            root.styleSheets.Add(StyleSelector.ValidatorWindow.ValidatorWindowTheme);
 
             ConstructWindow();
         }

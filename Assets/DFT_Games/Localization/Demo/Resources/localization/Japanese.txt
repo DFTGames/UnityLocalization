@@ -1,4 +1,4 @@
-﻿title=私の偉大な\nゲーム
-play=开始
-opts=設定
-info=情報
+﻿title=私の素晴らしい\nゲーム
+play=プレイ
+opts=オプション
+info=インフォ

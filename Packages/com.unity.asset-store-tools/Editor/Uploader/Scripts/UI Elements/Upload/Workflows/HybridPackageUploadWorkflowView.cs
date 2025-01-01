@@ -193,7 +193,8 @@ namespace AssetStoreTools.Uploader.UIElements
             if (pathsToAdd.Count != 0)
                 PopulateExtraPackagesBox(pathsToAdd, serializedToggles);
 
-            // After setting up the main and extra paths update validation paths
+            // After setting up the main and extra paths, check for missing metas and update validation paths
+            CheckForMissingMetas();
             UpdateValidationPaths();
 
             if (serializeValues)

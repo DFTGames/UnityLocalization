@@ -1,6 +1,59 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [11.4.4] - 2024-11-29
+
+### Validator Changes
+- The validator UI window description section can now be expanded or shrunk to take up less screen space
+- Updated severity of the Model Importer Logs validation test
+
+### Exporter Changes
+- Updated exporter to always exclude hidden files and folders beginning with the dot symbol (e.g.: .hiddenFolder/ or .hiddenfile.txt)
+- Updated exporter to explicitly exclude extended attribute files when exporting packages on macOS systems
+
+### Other
+- Moved the Asset Store Tools toolbar items into the Tools section
+- Fixed several window-related compilation warnings when using Unity 6 versions of the Editor
+
+## [11.4.3] - 2024-08-01
+
+### Validator Changes
+- Hotfix: Remove non-ascii characters from the demo scene validation
+
+## [11.4.2] - 2024-07-30
+
+### Validator Changes
+- Check for nested .unitypackage files in the demo scene validation
+- Prevent normal map test from erroring when misc importer types are detected
+- Remove Templates category from the uncompressed images requirement list
+
+## [11.4.1] - 2024-05-10
+
+### Exporter Changes
+- Fixed an issue with bundled plugin folder contents not being exported
+
+### Other
+- Miscellaneous internal changes
+
+## [11.4.0] - 2024-01-23
+
+### Uploader Changes
+- Added prevention of uploading packages larger than 6 GB
+- Added a prompt to allow automatically generating meta files within hidden folders
+- Fixed some obsolete API usage warnings in newer Unity versions
+
+### Validator Changes
+- Added validation tests for:
+    - Animation Clip take names
+	- Model import logs
+	- Uncompressed Package size
+- Updated the fail severity of Audio Clipping validation test
+- Updated the Demo Scene test to treat default scenes with custom skyboxes as valid demo scenes
+- Fixed some obsolete API usage warnings in newer Unity versions
+
+### Other
+- Added an option to check for Asset Store Publishing Tools updates
+
 ## [11.3.1] - 2023-08-14
 
 ### Uploader Changes

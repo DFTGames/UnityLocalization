@@ -22,7 +22,7 @@ namespace AssetStoreTools.Uploader
     /// </summary>
     internal static class AssetStoreAPI
     {
-        public const string ToolVersion = "V6.3.1";
+        public const string ToolVersion = "V11.4.4";
 
         private const string UnauthSessionId = "26c4202eb475d02864b40827dfff11a14657aa41";
         private const string KharmaSessionId = "kharma.sessionid";
@@ -556,6 +556,28 @@ namespace AssetStoreTools.Uploader
         #endregion
 
         #region Utility Methods
+        
+        public static async Task<APIResult> GetLatestAssetStoreToolsVersion()
+        {
+            try
+            {
+                var url = "https://api.assetstore.unity3d.com/package/latest-version/115";
+                var result = await httpClient.GetAsync(url);
+
+                result.EnsureSuccessStatusCode();
+
+                var resultStr = await result.Content.ReadAsStringAsync();
+
+                var json = JSONParser.SimpleParse(resultStr);
+
+                return new APIResult() { Success = true, Response = json };
+            }
+            catch (Exception e)
+            {
+                return new APIResult() { Success = false, Error = ASError.GetGenericError(e) };
+            }
+        }
+        
         private static string GetLicenseHash()
         {
             return UnityEditorInternal.InternalEditorUtility.GetAuthToken().Substring(0, 40);

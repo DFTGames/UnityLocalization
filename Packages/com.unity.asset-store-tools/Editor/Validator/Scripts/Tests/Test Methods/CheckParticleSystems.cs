@@ -29,7 +29,12 @@ namespace AssetStoreTools.Validator.TestMethods
                     continue;
                 }
 
+#if UNITY_2023_1_OR_NEWER
+                var particleSystems = GameObject.FindObjectsByType<ParticleSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+#else
                 var particleSystems = GameObject.FindObjectsOfType<ParticleSystem>();
+#endif
+
                 foreach (var ps in particleSystems)
                 {
                     if (PrefabUtility.IsPartOfAnyPrefab(ps.gameObject))

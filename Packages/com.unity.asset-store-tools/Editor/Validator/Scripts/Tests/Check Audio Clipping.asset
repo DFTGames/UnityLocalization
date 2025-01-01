@@ -27,5 +27,6 @@ MonoBehaviour:
     IsFailFilter: 1
     IsInclusiveFilter: 1
     AppliesToSubCategories: 1
-    Filter: []
+    Filter:
+    - Audio
   TestScript: {fileID: 11500000, guid: f604db0353da0cb46bb048f5cd37186f, type: 3}

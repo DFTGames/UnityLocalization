@@ -21,8 +21,10 @@ namespace AssetStoreTools.Utility
 
         private void Load()
         {
+            CheckForUpdates = PlayerPrefs.GetInt("AST_CheckForUpdates", 1) == 1;
             LegacyVersionCheck = PlayerPrefs.GetInt("AST_LegacyVersionCheck", 1) == 1;
             UploadVersionCheck = PlayerPrefs.GetInt("AST_UploadVersionCheck", 1) == 1;
+            DisplayHiddenMetaDialog = PlayerPrefs.GetInt("AST_HiddenFolderMetaCheck", 1) == 1;
             EnableSymlinkSupport = PlayerPrefs.GetInt("AST_EnableSymlinkSupport", 0) == 1;
             UseLegacyExporting = PlayerPrefs.GetInt("AST_UseLegacyExporting", 0) == 1;
             DisplayUploadDialog = PlayerPrefs.GetInt("AST_DisplayUploadDialog", 0) == 1;
@@ -30,8 +32,10 @@ namespace AssetStoreTools.Utility
 
         public void Save(bool triggerSettingsChange = false)
         {
+            PlayerPrefs.SetInt("AST_CheckForUpdates", CheckForUpdates ? 1 : 0);
             PlayerPrefs.SetInt("AST_LegacyVersionCheck", LegacyVersionCheck ? 1 : 0);
             PlayerPrefs.SetInt("AST_UploadVersionCheck", UploadVersionCheck ? 1 : 0);
+            PlayerPrefs.SetInt("AST_HiddenFolderMetaCheck", DisplayHiddenMetaDialog ? 1 : 0);
             PlayerPrefs.SetInt("AST_EnableSymlinkSupport", EnableSymlinkSupport ? 1 : 0);
             PlayerPrefs.SetInt("AST_UseLegacyExporting", UseLegacyExporting ? 1 : 0);
             PlayerPrefs.SetInt("AST_DisplayUploadDialog", DisplayUploadDialog ? 1 : 0);
@@ -42,6 +46,11 @@ namespace AssetStoreTools.Utility
         }
 
         /// <summary>
+        /// Periodically check if an update for the Asset Store Publishing Tools is available
+        /// </summary>
+        public bool CheckForUpdates;
+
+        /// <summary>
         /// Check if legacy Asset Store Tools are in the Project
         /// </summary>
         public bool LegacyVersionCheck;
@@ -50,6 +59,11 @@ namespace AssetStoreTools.Utility
         /// Check if the package has been uploader from a correct Unity version at least once
         /// </summary>
         public bool UploadVersionCheck;
+
+        /// <summary>
+        /// Enables a DisplayDialog when hidden folders are found to be missing meta files
+        /// </summary>
+        public bool DisplayHiddenMetaDialog;
 
         /// <summary>
         /// Enables Junction symlink support
@@ -73,8 +87,10 @@ namespace AssetStoreTools.Utility
         
         private class Styles
         {
+            public static readonly GUIContent CheckForUpdatesLabel = EditorGUIUtility.TrTextContent("Check for Updates", "Periodically check if an update for the Asset Store Publishing Tools is available.");
             public static readonly GUIContent LegacyVersionCheckLabel = EditorGUIUtility.TrTextContent("Legacy ASTools Check", "Enable Legacy Asset Store Tools version checking.");
             public static readonly GUIContent UploadVersionCheckLabel = EditorGUIUtility.TrTextContent("Upload Version Check", "Check if the package has been uploader from a correct Unity version at least once.");
+            public static readonly GUIContent DisplayHiddenMetaDialogLabel = EditorGUIUtility.TrTextContent("Display Hidden Folder Meta Dialog", "Show a DisplayDialog when hidden folders are found to be missing meta files.\nNote: this only affects hidden folders ending with a '~' character");
             public static readonly GUIContent EnableSymlinkSupportLabel = EditorGUIUtility.TrTextContent("Enable Symlink Support", "Enable Junction Symlink support. Note: folder selection validation will take longer.");
             public static readonly GUIContent UseLegacyExportingLabel = EditorGUIUtility.TrTextContent("Use Legacy Exporting", "Enabling this option uses native Unity methods when exporting packages for the Folder Upload workflow.\nNote: individual package dependency selection when choosing to 'Include Package Manifest' is unavailable when this option is enabled.");
             public static readonly GUIContent DisplayUploadDialogLabel = EditorGUIUtility.TrTextContent("Display Upload Dialog", "Show a DisplayDialog after the package uploading has finished.");
@@ -94,8 +110,10 @@ namespace AssetStoreTools.Utility
             EditorGUI.BeginChangeCheck();
             using (CreateSettingsWindowGUIScope())
             {
+                preferences.CheckForUpdates = EditorGUILayout.Toggle(Styles.CheckForUpdatesLabel, preferences.CheckForUpdates);
                 preferences.LegacyVersionCheck = EditorGUILayout.Toggle(Styles.LegacyVersionCheckLabel, preferences.LegacyVersionCheck);
                 preferences.UploadVersionCheck = EditorGUILayout.Toggle(Styles.UploadVersionCheckLabel, preferences.UploadVersionCheck);
+                preferences.DisplayHiddenMetaDialog = EditorGUILayout.Toggle(Styles.DisplayHiddenMetaDialogLabel, preferences.DisplayHiddenMetaDialog);
                 preferences.EnableSymlinkSupport = EditorGUILayout.Toggle(Styles.EnableSymlinkSupportLabel, preferences.EnableSymlinkSupport);
                 preferences.UseLegacyExporting = EditorGUILayout.Toggle(Styles.UseLegacyExportingLabel, preferences.UseLegacyExporting);
                 preferences.DisplayUploadDialog = EditorGUILayout.Toggle(Styles.DisplayUploadDialogLabel, preferences.DisplayUploadDialog);

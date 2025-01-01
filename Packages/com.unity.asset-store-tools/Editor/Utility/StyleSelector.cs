@@ -39,10 +39,20 @@ namespace AssetStoreTools.Utility
         {
             private const string StylesPath = "Packages/com.unity.asset-store-tools/Editor/Validator/Styles";
 
-            public static StyleSheet BaseWindowStyle => GetStylesheet($"{StylesPath}/Validator_Main.uss");
-            public static StyleSheet BaseWindowTheme => !EditorGUIUtility.isProSkin ?
+            public static StyleSheet ValidatorWindowStyle => GetStylesheet($"{StylesPath}/Validator_Main.uss");
+            public static StyleSheet ValidatorWindowTheme => !EditorGUIUtility.isProSkin ?
                 GetStylesheet($"{StylesPath}/Validator_Light.uss") :
                 GetStylesheet($"{StylesPath}/Validator_Dark.uss");
+        }
+
+        public static class UpdaterWindow
+        {
+            private const string StylesPath = "Packages/com.unity.asset-store-tools/Editor/Utility/Styles/Updater";
+
+            public static StyleSheet UpdaterWindowStyle => GetStylesheet($"{StylesPath}/Updater_Main.uss");
+            public static StyleSheet UpdaterWindowTheme => !EditorGUIUtility.isProSkin ?
+                GetStylesheet($"{StylesPath}/Updater_Light.uss") :
+                GetStylesheet($"{StylesPath}/Updater_Dark.uss");
         }
     }
 }

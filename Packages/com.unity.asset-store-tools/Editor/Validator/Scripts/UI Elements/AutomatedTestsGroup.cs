@@ -3,6 +3,7 @@ using AssetStoreTools.Validator.Data;
 using AssetStoreTools.Validator.TestDefinitions;
 using AssetStoreTools.Validator.Utility;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -139,7 +140,7 @@ namespace AssetStoreTools.Validator.UIElements
                 AddCategoriesToSet(categories, test.CategoryInfo);
             }
 
-            foreach (var category in categories)
+            foreach (var category in categories.OrderBy(x => x))
             {
                 list.AppendAction(ConvertSlashToUnicodeSlash(category), _ => OnCategoryValueChange(category));
             }
