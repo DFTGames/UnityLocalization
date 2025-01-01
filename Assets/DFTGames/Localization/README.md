@@ -70,6 +70,16 @@ Add the appropriate script component to the UI element to enable localization:
 - **Localize**: For UGUI Text.
 - **LocalizeTMPro**: For TextMeshPro UGUI.
 
+# Language Preference Handling
+
+The localization system determines the player's language preference as follows:
+
+1. If a language preference is stored in Unity's PlayerPrefs, it uses that language.
+2. If no PlayerPrefs preference exists, it defaults to the operating system language, provided the corresponding translation file is available.
+3. If the operating system language file is not found, it defaults to English.
+
+The system automatically saves the selected language to Unity's PlayerPrefs game saving system. This ensures the player's language preference persists across game sessions.
+
 # Additional Notes
 
 - All localization scripts handle language changes dynamically, updating the UI elements in real-time.
