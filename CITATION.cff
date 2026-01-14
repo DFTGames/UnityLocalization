@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the information below."
+title: "Unity Localization System"
+type: software
+authors:
+  - family-names: "De Francesco"
+    given-names: "Giuseppe"
+    alias: "Pino"
+    orcid: "https://orcid.org/0000-0002-4362-7140"
+license: "Apache-2.0"
+repository-code: "https://github.com/DFTGames/UnityLocalization"
+url: "https://github.com/DFTGames/UnityLocalization"

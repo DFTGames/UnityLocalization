@@ -10,3 +10,15 @@ title=私の素晴らしい\nゲーム
 play=プレイ
 opts=オプション
 info=インフォ
+title	My Great\nGame
+play	Play
+opts	Settings
+info	Info
+title=Il mio grande\ngioco
+play=Gioca
+opts=Impostazioni
+info=Informazioni
+title=私の素晴らしい\nゲーム
+play=プレイ
+opts=オプション
+info=インフォ
