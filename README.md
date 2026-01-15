@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/78763116.svg)](https://doi.org/10.5281/zenodo.18244509)
 # DFT Games Localization Solution
 
 ## Table of Contents
@@ -105,13 +106,13 @@ player_score=Score: {0}
 
 **Spanish.txt:**
 ```
-welcome=¡Bienvenido al Juego!
+welcome=Â¡Bienvenido al Juego!
 start_game=Iniciar Juego
 exit_game=Salir
-settings=Configuración
-confirm_exit=¿Estás seguro de que quieres salir?
-multiline_text=Esta es la línea uno\nEsta es la línea dos\nEsta es la línea tres
-player_score=Puntuación: {0}
+settings=ConfiguraciÃ³n
+confirm_exit=Â¿EstÃ¡s seguro de que quieres salir?
+multiline_text=Esta es la lÃ­nea uno\nEsta es la lÃ­nea dos\nEsta es la lÃ­nea tres
+player_score=PuntuaciÃ³n: {0}
 ```
 
 ### UI Image Localization Files
